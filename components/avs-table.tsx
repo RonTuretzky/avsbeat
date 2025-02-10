@@ -29,7 +29,6 @@ export function AVSTable({ data }: AVSTableProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-zinc-400 w-[100px]">#</TableHead>
             <TableHead className="text-zinc-400">Name</TableHead>
             <TableHead className="text-zinc-400 w-[220px]">
               Risk Analysis
@@ -44,24 +43,70 @@ export function AVSTable({ data }: AVSTableProps) {
         </TableHeader>
         <TableBody>
           {data.map((avs, index) => (
-            <TableRow
-              key={index}
-              className="border-zinc-800 text-[15px] font-semibold"
-            >
-              <TableCell className="text-zinc-300">{index + 1}</TableCell>
+            <TableRow key={index} className="">
               <TableCell>
-                <div className="flex items-center gap-8">
-                  <div className="w-6 h-6 rounded-full overflow-hidden bg-zinc-800 flex">
+                <div className="flex gap-4 justify-start items-start">
+                  <div className="min-w-10 min-h-10 rounded-full">
                     <Image
                       src={
                         avs.curatedMetadata?.metadataLogo || "/placeholder.svg"
                       }
                       alt={`${avs.name} logo`}
-                      width={28}
-                      height={28}
+                      width={40}
+                      height={40}
                     />
                   </div>
-                  <span className="text-zinc-100">{avs.name}</span>
+                  <div className="flex flex-col min-w-[400px]">
+                    <span className="text-zinc-100 mt-2 font-bold">
+                      {avs.name}
+                    </span>
+
+                    <div className="flex gap-2 my-2">
+                      <a href={avs.curatedMetadata.metadataDiscord || ""}>
+                        <Image
+                          src={Discord}
+                          alt="discord-icon"
+                          width={20}
+                          height={20}
+                        />
+                      </a>
+                      <a href={avs.curatedMetadata.metadataTelegram || ""}>
+                        <Image
+                          src={Telegram}
+                          alt="telegram-icon"
+                          width={20}
+                          height={20}
+                        />
+                      </a>
+                      <a href={avs.curatedMetadata.metadataWebsite || ""}>
+                        <Image
+                          src={WebSite}
+                          alt="website-icon"
+                          width={20}
+                          height={20}
+                        />
+                      </a>
+                      <a href={avs.curatedMetadata.metadataX || ""}>
+                        <Image
+                          src={Twitter}
+                          alt="x-icon"
+                          width={20}
+                          height={20}
+                        />
+                      </a>
+                      <a href={avs.curatedMetadata.metadataGithub || ""}>
+                        <Image
+                          src={Github}
+                          alt="github-icon"
+                          width={20}
+                          height={20}
+                        />
+                      </a>
+                    </div>
+                    <p className="">
+                      {avs.curatedMetadata.metadataDescription}
+                    </p>
+                  </div>
                 </div>
               </TableCell>
               <TableCell className="px-8">
@@ -96,53 +141,6 @@ export function AVSTable({ data }: AVSTableProps) {
                     >
                       {avs.decentralized ? "Decentralized" : "Centralized"}
                     </Badge>
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell>
-                <div className="flex flex-col min-w-[400px]">
-                  <p className="">{avs.curatedMetadata.metadataDescription}</p>
-                  <div className="flex gap-2 mt-2">
-                    <a href={avs.curatedMetadata.metadataDiscord || ""}>
-                      <Image
-                        src={Discord}
-                        alt="discord-icon"
-                        width={24}
-                        height={24}
-                      />
-                    </a>
-                    <a href={avs.curatedMetadata.metadataTelegram || ""}>
-                      <Image
-                        src={Telegram}
-                        alt="telegram-icon"
-                        width={24}
-                        height={24}
-                      />
-                    </a>
-                    <a href={avs.curatedMetadata.metadataWebsite || ""}>
-                      <Image
-                        src={WebSite}
-                        alt="website-icon"
-                        width={24}
-                        height={24}
-                      />
-                    </a>
-                    <a href={avs.curatedMetadata.metadataX || ""}>
-                      <Image
-                        src={Twitter}
-                        alt="x-icon"
-                        width={24}
-                        height={24}
-                      />
-                    </a>
-                    <a href={avs.curatedMetadata.metadataGithub || ""}>
-                      <Image
-                        src={Github}
-                        alt="github-icon"
-                        width={24}
-                        height={24}
-                      />
-                    </a>
                   </div>
                 </div>
               </TableCell>
