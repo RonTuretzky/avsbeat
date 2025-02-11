@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { RiskAnalysisChart } from "./risk-analysis-chart";
 import type { AVSData } from "../utils/mock-data";
-import PieChart from "./pie-chart";
+// import PieChart from "./pie-chart";
 import Discord from "../public/discord.png";
 import Github from "../public/github.png";
 import Twitter from "../public/x.png";
@@ -25,7 +25,7 @@ interface AVSTableProps {
 
 export function AVSTable({ data }: AVSTableProps) {
   return (
-    <div className="rounded-lg border border-zinc-800 bg-zinc-950">
+    <div className="rounded-lg border border-zinc-800 bg-zinc-950 h-screen">
       <Table>
         <TableHeader>
           <TableRow>
@@ -44,7 +44,7 @@ export function AVSTable({ data }: AVSTableProps) {
         </TableHeader>
         <TableBody>
           {data.map((avs, index) => (
-            <TableRow key={index} className="">
+            <TableRow key={index} className="max-h-5">
               <TableCell>
                 <div className="flex gap-4 justify-start items-start">
                   <div className="min-w-10 min-h-10 rounded-full">

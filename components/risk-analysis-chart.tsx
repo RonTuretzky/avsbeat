@@ -77,7 +77,7 @@ export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
                 return getColorForScore(value);
               },
               borderColor: "#000000",
-              borderWidth: 12,
+              borderWidth: 8,
               borderRadius: 0,
             },
           ],
@@ -107,7 +107,7 @@ export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
             },
             cutout: "20%",
             rotation: 0,
-            circumference: 360, // Ensure full circle
+            circumference: 360,
           },
         };
 
@@ -160,13 +160,10 @@ export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
   }, [scores]);
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-black border-black" style={{ zIndex: 9999 }}>
       <CardContent className="flex p-4 gap-12 items-center justify-cente">
-        <div
-          ref={containerRef}
-          className="relative w-[200px] h-[200px] mx-4"
-        >
-          <canvas ref={chartRef} />
+        <div ref={containerRef} className="relative w-[200px] h-[200px] mx-4">
+          <canvas ref={chartRef} className="" />
         </div>
         <div className="text-white min-w-[150px]">
           <div className="flex flex-col gap-1 p-1">
