@@ -33,12 +33,13 @@ export function AVSTable({ data }: AVSTableProps) {
             <TableHead className="text-zinc-400 w-[220px]">
               Risk Analysis
             </TableHead>
-            <TableHead className="text-zinc-400">Status</TableHead>
-            <TableHead className="text-zinc-400">Description</TableHead>
-            <TableHead className="text-zinc-400">Total Stakers</TableHead>
-            <TableHead className="text-zinc-400">Total Operators</TableHead>
-            <TableHead className="text-zinc-400">Tags</TableHead>
-            <TableHead className="text-zinc-400">TVL Strategies ETH</TableHead>
+            <TableHead className="text-zinc-400">Rewards</TableHead>
+            <TableHead className="text-zinc-400">Open Source</TableHead>
+            <TableHead className="text-zinc-400">Decentralized</TableHead>
+            <TableHead className="text-zinc-400">Slashing</TableHead>
+            <TableHead className="text-zinc-400">Stakers</TableHead>
+            <TableHead className="text-zinc-400">Operators</TableHead>
+            <TableHead className="text-zinc-400">Category</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -112,43 +113,28 @@ export function AVSTable({ data }: AVSTableProps) {
               <TableCell className="px-8">
                 <RiskAnalysisChart scores={avs.riskScore} />
               </TableCell>
-              <TableCell>
-                <div className="flex flex-col gap-1 text-xs">
-                  <div>
-                    <span className="text-zinc-400">Slashing:</span>{" "}
-                    <span className="text-zinc-100">{avs.slashing}</span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-400">Rewards:</span>{" "}
-                    <span className="text-zinc-100">{avs.rewards}</span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-400">Interoperability:</span>{" "}
-                    <span className="text-zinc-100">
-                      {avs.protocolInteroperability.join(", ")}
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-1 mt-1">
-                    <Badge
-                      variant={avs.openSource ? "success" : "destructive"}
-                      className="text-[10px] h-4"
-                    >
-                      {avs.openSource ? "Open Source" : "Closed Source"}
-                    </Badge>
-                    <Badge
-                      variant={avs.decentralized ? "success" : "destructive"}
-                      className="text-[10px] h-4"
-                    >
-                      {avs.decentralized ? "Decentralized" : "Centralized"}
-                    </Badge>
-                  </div>
-                </div>
+              <TableCell
+                className={`${
+                  avs.rewards === "High" ? "text-green-400 font-semibold" : ""
+                }`}
+              >
+                {avs.rewards}
+              </TableCell>
+              <TableCell>{avs.openSource ? "Yes" : "No"}</TableCell>
+              <TableCell>{avs.decentralized ? "Yes" : "No"}</TableCell>
+              <TableCell
+                className={`${
+                  avs.slashing === "High" ? "text-green-400 font-semibold" : ""
+                }`}
+              >
+                {avs.slashing}
               </TableCell>
               <TableCell>{avs.totalStakers}</TableCell>
               <TableCell>{avs.totalOperators}</TableCell>
-              <TableCell>{avs.curatedMetadata.tags.join(", ")}</TableCell>
               <TableCell>
-                <PieChart data={avs.tvlStrategiesEth} key={index} />
+                {avs.curatedMetadata.tags?.map((tag) => (
+                  <Badge>{tag}</Badge>
+                ))}
               </TableCell>
             </TableRow>
           ))}
