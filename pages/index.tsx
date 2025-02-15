@@ -1,4 +1,5 @@
 import { AVSTable } from "@/components/avs-table";
+import Header from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
 import type { AVSData } from "@/utils/mock-data";
 import { mockData } from "@/utils/mock-data";
@@ -16,14 +17,7 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
   return (
     <div className="min-h-screen bg-black text-white p-4 md:p-8">
       <div className="min-w-7xl px-[200px] space-y-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-2">
-            <h1 className="text-3xl font-bold">AVS Analysis Dashboard</h1>
-            <p className="text-zinc-400">
-              Compare and analyze various AVS implementations
-            </p>
-          </div>
-        </div>
+        <Header />
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
           <Card className="bg-zinc-900 border-zinc-800">
