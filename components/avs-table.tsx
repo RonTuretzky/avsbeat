@@ -132,9 +132,7 @@ export function AVSTable({ data }: AVSTableProps) {
               <TableCell>{avs.totalStakers}</TableCell>
               <TableCell>{avs.totalOperators}</TableCell>
               <TableCell>
-                {avs.curatedMetadata.tags?.map((tag) => (
-                  <Badge>{tag}</Badge>
-                ))}
+                {avs.curatedMetadata.tags?.map((tag) => <Badge>{tag}</Badge>)}
               </TableCell>
             </TableRow>
           ))}

@@ -82,7 +82,7 @@ export async function getStaticProps() {
         next: {
           revalidate: 24 * 60 * 60, // Revalidate every 24 hours
         },
-      }
+      },
     );
 
     if (!response.ok) {
