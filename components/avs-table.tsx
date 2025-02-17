@@ -11,11 +11,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { AVSData } from "../utils/mock-data";
-import Discord from "../public/discord.png";
-import Github from "../public/github.png";
-import Twitter from "../public/x.png";
-import Telegram from "../public/telegram.png";
-import WebSite from "../public/www.png";
 
 interface AVSTableProps {
   data: AVSData[];
