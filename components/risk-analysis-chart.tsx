@@ -168,67 +168,57 @@ export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
         <div className="text-white min-w-[150px]">
           <div className="flex flex-col gap-1 p-1">
             <p>Decentralized</p>
-            <p>
-              {scores?.decentralized <= 0 ? (
-                <p className="text-red-400">
-                  Centralized ({scores?.decentralized})
-                </p>
-              ) : (
-                <p className="text-green-400">
-                  Decentralized ({scores?.decentralized})
-                </p>
-              )}
-            </p>
+            {scores?.decentralized <= 0 ? (
+              <p className="text-red-400">
+                Centralized ({scores?.decentralized})
+              </p>
+            ) : (
+              <p className="text-green-400">
+                Decentralized ({scores?.decentralized})
+              </p>
+            )}
           </div>
           <div className="flex flex-col gap-1 p-1">
             <p>Slashing</p>
-            <p>
-              {scores?.slashing < 25 ? (
-                <p className="text-red-400">Low ({scores?.slashing})</p>
-              ) : scores?.slashing < 50 ? (
-                <p className="text-orange-400">Medium ({scores?.slashing})</p>
-              ) : (
-                <p className="text-green-400">High ({scores?.slashing})</p>
-              )}
-            </p>
+            {scores?.slashing < 25 ? (
+              <p className="text-red-400">Low ({scores?.slashing})</p>
+            ) : scores?.slashing < 50 ? (
+              <p className="text-orange-400">Medium ({scores?.slashing})</p>
+            ) : (
+              <p className="text-green-400">High ({scores?.slashing})</p>
+            )}
           </div>
           <div className="flex flex-col gap-1 p-1">
             <p>Interoperatability</p>
-            <p>
-              {scores?.interoperability < 25 ? (
-                <p className="text-red-400">Low ({scores?.interoperability})</p>
-              ) : scores?.interoperability < 50 ? (
-                <p className="text-orange-400">
-                  Medium ({scores?.interoperability})
-                </p>
-              ) : (
-                <p className="text-green-400">
-                  High ({scores?.interoperability})
-                </p>
-              )}
-            </p>
+            {scores?.interoperability < 25 ? (
+              <p className="text-red-400">Low ({scores?.interoperability})</p>
+            ) : scores?.interoperability < 50 ? (
+              <p className="text-orange-400">
+                Medium ({scores?.interoperability})
+              </p>
+            ) : (
+              <p className="text-green-400">
+                High ({scores?.interoperability})
+              </p>
+            )}
           </div>
           <div className="flex flex-col gap-1 p-1">
             <p>Open Source</p>
-            <p>
-              {scores?.openSource <= 0 ? (
-                <p className="text-red-400">Closed Source</p>
-              ) : (
-                <p className="text-green-400">Open Source</p>
-              )}
-            </p>
+            {scores?.openSource <= 0 ? (
+              <p className="text-red-400">Closed Source</p>
+            ) : (
+              <p className="text-green-400">Open Source</p>
+            )}
           </div>
           <div className="flex flex-col gap-1 p-1">
             <p>Rewards</p>
-            <p>
-              {scores?.rewards < 25 ? (
-                <p className="text-red-400">Low ({scores?.rewards})</p>
-              ) : scores?.rewards < 50 ? (
-                <p className="text-orange-400">Medium ({scores?.rewards})</p>
-              ) : (
-                <p className="text-green-400">High ({scores?.rewards})</p>
-              )}
-            </p>
+            {scores?.rewards < 25 ? (
+              <p className="text-red-400">Low ({scores?.rewards})</p>
+            ) : scores?.rewards < 50 ? (
+              <p className="text-orange-400">Medium ({scores?.rewards})</p>
+            ) : (
+              <p className="text-green-400">High ({scores?.rewards})</p>
+            )}
           </div>
         </div>
       </CardContent>
