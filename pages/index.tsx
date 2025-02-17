@@ -14,7 +14,7 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
   }
 
   return (
-    <div className="min-h-screen text-white p-4 md:p-8">
+    <div className="min-h-screen p-4 md:p-8">
       <div className="min-w-7xl px-[200px] space-y-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-2">
