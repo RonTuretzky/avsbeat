@@ -160,12 +160,12 @@ export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
   }, [scores]);
 
   return (
-    <Card className="bg-black border-black" style={{ zIndex: 9999 }}>
-      <CardContent className="flex p-4 gap-12 items-center justify-cente">
-        <div ref={containerRef} className="relative w-[200px] h-[200px] mx-4">
+    <Card className="border-black bg-black" style={{ zIndex: 9999 }}>
+      <CardContent className="justify-cente flex items-center gap-12 p-4">
+        <div ref={containerRef} className="relative mx-4 h-[200px] w-[200px]">
           <canvas ref={chartRef} className="" />
         </div>
-        <div className="text-white min-w-[150px]">
+        <div className="min-w-[150px] text-white">
           <div className="flex flex-col gap-1 p-1">
             <p>Decentralized</p>
             {scores?.decentralized <= 0 ? (

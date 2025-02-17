@@ -25,12 +25,12 @@ interface AVSTableProps {
 
 export function AVSTable({ data }: AVSTableProps) {
   return (
-    <div className="rounded-lg border border-zinc-800 bg-zinc-950 h-screen">
+    <div className="h-screen rounded-lg border border-zinc-800 bg-zinc-950">
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="text-zinc-400">Name</TableHead>
-            <TableHead className="text-zinc-400 w-[220px]">
+            <TableHead className="w-[220px] text-zinc-400">
               Risk Analysis
             </TableHead>
             <TableHead className="text-zinc-400">Rewards</TableHead>
@@ -46,8 +46,8 @@ export function AVSTable({ data }: AVSTableProps) {
           {data.map((avs, index) => (
             <TableRow key={index} className="max-h-5">
               <TableCell>
-                <div className="flex gap-4 justify-start items-start">
-                  <div className="min-w-10 min-h-10 rounded-full">
+                <div className="flex items-start justify-start gap-4">
+                  <div className="min-h-10 min-w-10 rounded-full">
                     <Image
                       src={
                         avs.curatedMetadata?.metadataLogo || "/placeholder.svg"
@@ -57,12 +57,12 @@ export function AVSTable({ data }: AVSTableProps) {
                       height={40}
                     />
                   </div>
-                  <div className="flex flex-col min-w-[400px]">
-                    <span className="text-zinc-100 mt-2 font-bold">
+                  <div className="flex min-w-[400px] flex-col">
+                    <span className="mt-2 font-bold text-zinc-100">
                       {avs.name}
                     </span>
 
-                    <div className="flex gap-2 my-2">
+                    <div className="my-2 flex gap-2">
                       <a href={avs.curatedMetadata.metadataDiscord || ""}>
                         <Image
                           src={Discord}
@@ -115,7 +115,7 @@ export function AVSTable({ data }: AVSTableProps) {
               </TableCell>
               <TableCell
                 className={`${
-                  avs.rewards === "High" ? "text-green-400 font-semibold" : ""
+                  avs.rewards === "High" ? "font-semibold text-green-400" : ""
                 }`}
               >
                 {avs.rewards}
@@ -124,7 +124,7 @@ export function AVSTable({ data }: AVSTableProps) {
               <TableCell>{avs.decentralized ? "Yes" : "No"}</TableCell>
               <TableCell
                 className={`${
-                  avs.slashing === "High" ? "text-green-400 font-semibold" : ""
+                  avs.slashing === "High" ? "font-semibold text-green-400" : ""
                 }`}
               >
                 {avs.slashing}
