@@ -25,7 +25,7 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="border-2 border-[#f5f5f5] bg-white">
             <CardContent className="p-6">
               <div className="pb-4">Total AVS Solutions</div>
