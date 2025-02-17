@@ -23,7 +23,7 @@ interface AVSTableProps {
 
 export function AVSTable({ data }: AVSTableProps) {
   return (
-    <Table>
+    <Table className="hidden md:block">
       <TableHeader>
         <TableRow className="bg-[#ECECFF]">
           <TableHead className="rounded-tl-lg text-zinc-400">Name</TableHead>
