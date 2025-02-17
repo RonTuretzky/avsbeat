@@ -1,5 +1,5 @@
 import { AVSTable } from "@/components/avs-table";
-import Header from "@/components/header";
+import { Header } from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
 import type { AVSData } from "@/utils/mock-data";
 import { mockData } from "@/utils/mock-data";
@@ -18,7 +18,6 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
     <div className="min-h-screen p-4 md:p-8">
       <div className="m-auto max-w-6xl space-y-8">
         <Header />
-
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="border-2 border-[#f5f5f5] bg-white">
             <CardContent className="p-6">
@@ -29,7 +28,6 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
             </CardContent>
           </Card>
         </div>
-
         <AVSTable data={avsData} />
       </div>
     </div>
