@@ -30,13 +30,7 @@ export function AVSTable({ data }: AVSTableProps) {
         <TableHeader>
           <TableRow>
             <TableHead className="text-zinc-400">Name</TableHead>
-            <TableHead className="w-[220px] text-zinc-400">
-              Risk Analysis
-            </TableHead>
-            <TableHead className="text-zinc-400">Rewards</TableHead>
-            <TableHead className="text-zinc-400">Open Source</TableHead>
-            <TableHead className="text-zinc-400">Decentralized</TableHead>
-            <TableHead className="text-zinc-400">Slashing</TableHead>
+            <TableHead className="w-[220px] text-zinc-400">Risks</TableHead>
             <TableHead className="text-zinc-400">Stakers</TableHead>
             <TableHead className="text-zinc-400">Operators</TableHead>
             <TableHead className="text-zinc-400">Category</TableHead>
@@ -47,6 +41,7 @@ export function AVSTable({ data }: AVSTableProps) {
             <TableRow key={index} className="max-h-5">
               <TableCell>
                 <div className="flex items-start justify-start gap-4">
+                  {/* logo */}
                   <div className="min-h-10 min-w-10 rounded-full">
                     <Image
                       src={
@@ -57,6 +52,7 @@ export function AVSTable({ data }: AVSTableProps) {
                       height={40}
                     />
                   </div>
+                  {/* name */}
                   <div className="flex min-w-[400px] flex-col">
                     <span className="mt-2 font-bold text-zinc-100">
                       {avs.name}
@@ -110,17 +106,18 @@ export function AVSTable({ data }: AVSTableProps) {
                   </div>
                 </div>
               </TableCell>
+              {/* risks */}
               <TableCell className="px-8">
                 <RiskAnalysisChart scores={avs.riskScore} />
               </TableCell>
-              <TableCell
+              {/* <TableCell
                 className={`${
                   avs.rewards === "High" ? "font-semibold text-green-400" : ""
                 }`}
               >
                 {avs.rewards}
-              </TableCell>
-              <TableCell>{avs.openSource ? "Yes" : "No"}</TableCell>
+              </TableCell> */}
+              {/* <TableCell>{avs.openSource ? "Yes" : "No"}</TableCell>
               <TableCell>{avs.decentralized ? "Yes" : "No"}</TableCell>
               <TableCell
                 className={`${
@@ -128,7 +125,7 @@ export function AVSTable({ data }: AVSTableProps) {
                 }`}
               >
                 {avs.slashing}
-              </TableCell>
+              </TableCell> */}
               <TableCell>{avs.totalStakers}</TableCell>
               <TableCell>{avs.totalOperators}</TableCell>
               <TableCell>
