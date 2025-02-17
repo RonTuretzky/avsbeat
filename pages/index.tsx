@@ -8,48 +8,24 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
   // Add a check for undefined avsData
   if (!avsData) {
     return (
-      <div className="min-h-screen bg-black text-white p-4 md:p-8 flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-black p-4 text-white md:p-8">
         <p className="text-xl">Loading AVS data...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-4 md:p-8">
-      <div className="min-w-7xl px-[200px] space-y-8">
+    <div className="min-h-screen p-4 md:p-8">
+      <div className="m-auto max-w-6xl space-y-8">
         <Header />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-          <Card className="bg-zinc-900 border-zinc-800">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Card className="border-2 border-[#f5f5f5] bg-white">
             <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
+              <div className="pb-4">Total AVS Solutions</div>
+              <div className="text-4xl font-bold text-black">
                 {avsData.length}
               </div>
-              <div className="text-zinc-400">Total AVS Solutions</div>
-            </CardContent>
-          </Card>
-          <Card className="bg-zinc-900 border-zinc-800">
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
-                {avsData.filter((item) => item.openSource).length}
-              </div>
-              <div className="text-zinc-400">Open Source</div>
-            </CardContent>
-          </Card>
-          <Card className="bg-zinc-900 border-zinc-800">
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
-                {avsData.filter((item) => item.decentralized).length}
-              </div>
-              <div className="text-zinc-400">Decentralized</div>
-            </CardContent>
-          </Card>
-          <Card className="bg-zinc-900 border-zinc-800">
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
-                {avsData.filter((item) => item.protocolInteroperability).length}
-              </div>
-              <div className="text-zinc-400">Interoperable Protocols</div>
             </CardContent>
           </Card>
         </div>
@@ -76,7 +52,7 @@ export async function getStaticProps() {
         next: {
           revalidate: 24 * 60 * 60, // Revalidate every 24 hours
         },
-      }
+      },
     );
 
     if (!response.ok) {
