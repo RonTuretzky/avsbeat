@@ -58,7 +58,10 @@ const labels = [
   },
 ];
 
-export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
+export function RiskAnalysisChart({
+  scores,
+  hasLabels,
+}: RiskAnalysisProps & { hasLabels?: boolean }) {
   const chartRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -67,7 +70,7 @@ export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
       const ctx = chartRef.current.getContext("2d");
       if (ctx) {
         const data: ChartData = {
-          labels: labels.map(({ label }) => label),
+          labels: hasLabels ? labels.map(({ label }) => label) : undefined,
           datasets: [
             {
               data: [1, 1, 1, 1, 1], // Keep equal parts for 5 constant sections
@@ -160,68 +163,67 @@ export function RiskAnalysisChart({ scores }: RiskAnalysisProps) {
   }, [scores]);
 
   return (
-    <Card className="border-black bg-black" style={{ zIndex: 9999 }}>
+    <Card style={{ zIndex: 9999 }}>
       <CardContent className="justify-cente flex items-center gap-12 p-4">
         <div ref={containerRef} className="relative mx-4 h-[200px] w-[200px]">
           <canvas ref={chartRef} className="" />
         </div>
-        <div className="min-w-[150px] text-white">
-          <div className="flex flex-col gap-1 p-1">
-            <p>Decentralized</p>
-            {scores?.decentralized <= 0 ? (
-              <p className="text-red-400">
-                Centralized ({scores?.decentralized})
-              </p>
-            ) : (
-              <p className="text-green-400">
-                Decentralized ({scores?.decentralized})
-              </p>
-            )}
-          </div>
-          <div className="flex flex-col gap-1 p-1">
-            <p>Slashing</p>
-            {scores?.slashing < 25 ? (
-              <p className="text-red-400">Low ({scores?.slashing})</p>
-            ) : scores?.slashing < 50 ? (
-              <p className="text-orange-400">Medium ({scores?.slashing})</p>
-            ) : (
-              <p className="text-green-400">High ({scores?.slashing})</p>
-            )}
-          </div>
-          <div className="flex flex-col gap-1 p-1">
-            <p>Interoperatability</p>
-            {scores?.interoperability < 25 ? (
-              <p className="text-red-400">Low ({scores?.interoperability})</p>
-            ) : scores?.interoperability < 50 ? (
-              <p className="text-orange-400">
-                Medium ({scores?.interoperability})
-              </p>
-            ) : (
-              <p className="text-green-400">
-                High ({scores?.interoperability})
-              </p>
-            )}
-          </div>
-          <div className="flex flex-col gap-1 p-1">
-            <p>Open Source</p>
-            {scores?.openSource <= 0 ? (
-              <p className="text-red-400">Closed Source</p>
-            ) : (
-              <p className="text-green-400">Open Source</p>
-            )}
-          </div>
-          <div className="flex flex-col gap-1 p-1">
-            <p>Rewards</p>
-            {scores?.rewards < 25 ? (
-              <p className="text-red-400">Low ({scores?.rewards})</p>
-            ) : scores?.rewards < 50 ? (
-              <p className="text-orange-400">Medium ({scores?.rewards})</p>
-            ) : (
-              <p className="text-green-400">High ({scores?.rewards})</p>
-            )}
-          </div>
-        </div>
       </CardContent>
     </Card>
+  );
+}
+
+export function RiskAnalysisTextScores({ scores }: RiskAnalysisProps) {
+  return (
+    <div className="min-w-[150px] text-white">
+      <div className="flex flex-col gap-1 p-1">
+        <p>Decentralized</p>
+        {scores?.decentralized <= 0 ? (
+          <p className="text-red-400">Centralized ({scores?.decentralized})</p>
+        ) : (
+          <p className="text-green-400">
+            Decentralized ({scores?.decentralized})
+          </p>
+        )}
+      </div>
+      <div className="flex flex-col gap-1 p-1">
+        <p>Slashing</p>
+        {scores?.slashing < 25 ? (
+          <p className="text-red-400">Low ({scores?.slashing})</p>
+        ) : scores?.slashing < 50 ? (
+          <p className="text-orange-400">Medium ({scores?.slashing})</p>
+        ) : (
+          <p className="text-green-400">High ({scores?.slashing})</p>
+        )}
+      </div>
+      <div className="flex flex-col gap-1 p-1">
+        <p>Interoperatability</p>
+        {scores?.interoperability < 25 ? (
+          <p className="text-red-400">Low ({scores?.interoperability})</p>
+        ) : scores?.interoperability < 50 ? (
+          <p className="text-orange-400">Medium ({scores?.interoperability})</p>
+        ) : (
+          <p className="text-green-400">High ({scores?.interoperability})</p>
+        )}
+      </div>
+      <div className="flex flex-col gap-1 p-1">
+        <p>Open Source</p>
+        {scores?.openSource <= 0 ? (
+          <p className="text-red-400">Closed Source</p>
+        ) : (
+          <p className="text-green-400">Open Source</p>
+        )}
+      </div>
+      <div className="flex flex-col gap-1 p-1">
+        <p>Rewards</p>
+        {scores?.rewards < 25 ? (
+          <p className="text-red-400">Low ({scores?.rewards})</p>
+        ) : scores?.rewards < 50 ? (
+          <p className="text-orange-400">Medium ({scores?.rewards})</p>
+        ) : (
+          <p className="text-green-400">High ({scores?.rewards})</p>
+        )}
+      </div>
+    </div>
   );
 }
