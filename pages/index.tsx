@@ -26,36 +26,12 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <Card className="border-zinc-800 bg-zinc-900">
+          <Card className="border-2 border-[#f5f5f5] bg-white">
             <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
+              <div className="pb-4">Total AVS Solutions</div>
+              <div className="text-4xl font-bold text-black">
                 {avsData.length}
               </div>
-              <div className="text-zinc-400">Total AVS Solutions</div>
-            </CardContent>
-          </Card>
-          <Card className="border-zinc-800 bg-zinc-900">
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
-                {avsData.filter((item) => item.openSource).length}
-              </div>
-              <div className="text-zinc-400">Open Source</div>
-            </CardContent>
-          </Card>
-          <Card className="border-zinc-800 bg-zinc-900">
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
-                {avsData.filter((item) => item.decentralized).length}
-              </div>
-              <div className="text-zinc-400">Decentralized</div>
-            </CardContent>
-          </Card>
-          <Card className="border-zinc-800 bg-zinc-900">
-            <CardContent className="p-6">
-              <div className="text-2xl font-bold text-green-500">
-                {avsData.filter((item) => item.protocolInteroperability).length}
-              </div>
-              <div className="text-zinc-400">Interoperable Protocols</div>
             </CardContent>
           </Card>
         </div>
