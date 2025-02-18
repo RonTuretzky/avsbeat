@@ -1,6 +1,6 @@
 export function Header() {
   return (
-    <header>
+    <header className="flex flex-col gap-4">
       <svg
         width="203"
         height="40"
@@ -19,6 +19,7 @@ export function Header() {
           fill="#7C7CF0"
         />
       </svg>
+      <p>An AVS dashboard to compare and analyze all AVS implementations</p>
     </header>
   );
 }
