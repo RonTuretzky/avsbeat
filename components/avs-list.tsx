@@ -46,16 +46,18 @@ export function AVSList({ data }: { data: AVSData[] }) {
             </div>
             <div className="grid grid-cols-2 gap-y-3">
               <GridLabel>Rewards</GridLabel>
-              <GridValue>???</GridValue>
+              <GridValue>{getRiskString(avs.riskScore.rewards)}</GridValue>
 
               <GridLabel>Decentralisation</GridLabel>
-              <GridValue>???</GridValue>
+              <GridValue>
+                {getRiskString(avs.riskScore.decentralized)}
+              </GridValue>
 
               <GridLabel>Source Code</GridLabel>
-              <GridValue>???</GridValue>
+              <GridValue>{avs.openSource ? "Yes" : "No"}</GridValue>
 
               <GridLabel>Slashing</GridLabel>
-              <GridValue>???</GridValue>
+              <GridValue>{getRiskString(avs.riskScore.slashing)}</GridValue>
 
               <GridLabel>Stakers</GridLabel>
               <GridValue>{avs.totalStakers}</GridValue>
@@ -76,4 +78,10 @@ function GridLabel({ children }: { children: ReactNode }) {
 
 function GridValue({ children }: { children: ReactNode }) {
   return <span className="text-right text-black">{children}</span>;
+}
+
+function getRiskString(val: number) {
+  if (val < 33) return "Low";
+  if (val < 66) return "Medium";
+  return "High";
 }
