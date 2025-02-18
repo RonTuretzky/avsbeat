@@ -10,14 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { RiskAnalysisChart } from "./risk-analysis-chart";
-import type { AVSData } from "../utils/mock-data";
-// import PieChart from "./pie-chart";
-import Discord from "../public/discord.png";
-import Github from "../public/github.png";
-import Twitter from "../public/x.png";
-import Telegram from "../public/telegram.png";
-import WebSite from "../public/www.png";
+import { AVSSocialIcons } from "./avs-social-icons";
+import { ScoreWheel } from "./score-wheel";
+import { ScoresPopover } from "./scores-popover";
+import { AVSData } from "@/utils/types";
 
 interface AVSTableProps {
   data: AVSData[];
@@ -25,121 +21,86 @@ interface AVSTableProps {
 
 export function AVSTable({ data }: AVSTableProps) {
   return (
-    <div className="rounded-lg border border-zinc-800 bg-zinc-950 h-screen">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="text-zinc-400">Name</TableHead>
-            <TableHead className="text-zinc-400 w-[220px]">
-              Risk Analysis
-            </TableHead>
-            <TableHead className="text-zinc-400">Rewards</TableHead>
-            <TableHead className="text-zinc-400">Open Source</TableHead>
-            <TableHead className="text-zinc-400">Decentralized</TableHead>
-            <TableHead className="text-zinc-400">Slashing</TableHead>
-            <TableHead className="text-zinc-400">Stakers</TableHead>
-            <TableHead className="text-zinc-400">Operators</TableHead>
-            <TableHead className="text-zinc-400">Category</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map((avs, index) => (
-            <TableRow key={index} className="max-h-5">
-              <TableCell>
-                <div className="flex gap-4 justify-start items-start">
-                  <div className="min-w-10 min-h-10 rounded-full">
-                    <Image
-                      src={
-                        avs.curatedMetadata?.metadataLogo || "/placeholder.svg"
-                      }
-                      alt={`${avs.name} logo`}
-                      width={40}
-                      height={40}
-                    />
-                  </div>
-                  <div className="flex flex-col min-w-[400px]">
-                    <span className="text-zinc-100 mt-2 font-bold">
-                      {avs.name}
-                    </span>
-
-                    <div className="flex gap-2 my-2">
-                      <a href={avs.curatedMetadata.metadataDiscord || ""}>
-                        <Image
-                          src={Discord}
-                          alt="discord-icon"
-                          width={20}
-                          height={20}
-                        />
-                      </a>
-                      <a href={avs.curatedMetadata.metadataTelegram || ""}>
-                        <Image
-                          src={Telegram}
-                          alt="telegram-icon"
-                          width={20}
-                          height={20}
-                        />
-                      </a>
-                      <a href={avs.curatedMetadata.metadataWebsite || ""}>
-                        <Image
-                          src={WebSite}
-                          alt="website-icon"
-                          width={20}
-                          height={20}
-                        />
-                      </a>
-                      <a href={avs.curatedMetadata.metadataX || ""}>
-                        <Image
-                          src={Twitter}
-                          alt="x-icon"
-                          width={20}
-                          height={20}
-                        />
-                      </a>
-                      <a href={avs.curatedMetadata.metadataGithub || ""}>
-                        <Image
-                          src={Github}
-                          alt="github-icon"
-                          width={20}
-                          height={20}
-                        />
-                      </a>
-                    </div>
-                    <p className="">
-                      {avs.curatedMetadata.metadataDescription}
-                    </p>
-                  </div>
+    <Table className="hidden md:block">
+      <TableHeader>
+        <TableRow className="bg-[#ECECFF]">
+          <TableHead className="rounded-tl-lg text-zinc-400">Name</TableHead>
+          <TableHead className="text-center text-zinc-400">Risks</TableHead>
+          <TableHead className="text-zinc-400">Stakers</TableHead>
+          <TableHead className="text-zinc-400">Operators</TableHead>
+          <TableHead className="rounded-tr-lg text-center text-zinc-400">
+            Category
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data.map((avs) => (
+          <TableRow
+            key={`avs_item_${avs.address}`}
+            className="max-h-5 bg-white"
+          >
+            <TableCell className="flex justify-start">
+              <div className="flex justify-start gap-4">
+                <div className="min-h-8 min-w-8 rounded-full">
+                  <Image
+                    src={avs.metadataLogo}
+                    alt={`${avs.name} logo`}
+                    width={40}
+                    height={40}
+                  />
                 </div>
-              </TableCell>
-              <TableCell className="px-8">
-                <RiskAnalysisChart scores={avs.riskScore} />
-              </TableCell>
-              <TableCell
-                className={`${
-                  avs.rewards === "High" ? "text-green-400 font-semibold" : ""
-                }`}
-              >
-                {avs.rewards}
-              </TableCell>
-              <TableCell>{avs.openSource ? "Yes" : "No"}</TableCell>
-              <TableCell>{avs.decentralized ? "Yes" : "No"}</TableCell>
-              <TableCell
-                className={`${
-                  avs.slashing === "High" ? "text-green-400 font-semibold" : ""
-                }`}
-              >
-                {avs.slashing}
-              </TableCell>
-              <TableCell>{avs.totalStakers}</TableCell>
-              <TableCell>{avs.totalOperators}</TableCell>
-              <TableCell>
-                {avs.curatedMetadata.tags?.map((tag) => (
-                  <Badge>{tag}</Badge>
-                ))}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+
+                <div className="flex flex-col gap-4">
+                  <span className="text-base font-bold text-black">
+                    {avs.name}
+                  </span>
+
+                  <AVSSocialIcons
+                    xLink={avs.curatedMetadata.metadataX}
+                    discordLink={avs.curatedMetadata.metadataDiscord}
+                    githubLink={avs.curatedMetadata.metadataGithub}
+                    websiteLink={avs.curatedMetadata.metadataWebsite}
+                  />
+                  <p className="text-foreground">
+                    {avs.curatedMetadata.metadataDescription}
+                  </p>
+                </div>
+              </div>
+            </TableCell>
+            <TableCell className="px-8">
+              <div className="size-20">
+                <ScoresPopover
+                  trigger={
+                    <button>
+                      <ScoreWheel
+                        decent={avs.riskScore.decentralized}
+                        slashing={avs.riskScore.slashing}
+                        interop={avs.riskScore.interoperability}
+                        os={avs.riskScore.openSource}
+                        rewards={avs.riskScore.rewards}
+                      />
+                    </button>
+                  }
+                  scores={{
+                    decent: avs.riskScore.decentralized,
+                    slashing: avs.riskScore.slashing,
+                    interop: avs.riskScore.interoperability,
+                    os: avs.riskScore.openSource,
+                    rewards: avs.riskScore.rewards,
+                  }}
+                />
+              </div>
+            </TableCell>
+            <TableCell className="text-black">{avs.totalStakers}</TableCell>
+            <TableCell className="text-black">{avs.totalOperators}</TableCell>
+            <TableCell className="text-black">
+              {avs.curatedMetadata.tags?.map((tag: string) => (
+                <Badge>{tag}</Badge>
+              ))}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 }
