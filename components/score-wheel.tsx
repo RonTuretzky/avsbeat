@@ -16,6 +16,12 @@ function getScoreColor(score: number) {
   return "#2EB81D";
 }
 
+function getScoreColorInverse(score: number) {
+  if (score < 33) return "#2EB81D";
+  if (score < 66) return "#F2994A";
+  return "#FE1717";
+}
+
 export function ScoreWheel({
   decent,
   slashing,
@@ -37,7 +43,7 @@ export function ScoreWheel({
       </mask>
       <path
         d="M101.464 31.9343C101.464 27.9814 104.676 24.7422 108.611 25.1123C122.193 26.3892 135.232 31.2881 146.338 39.3574C157.444 47.4267 166.133 58.3136 171.544 70.8356C173.112 74.4641 171.024 78.5194 167.264 79.7409L119.162 95.3703C115.403 96.5918 111.393 94.1796 108.195 91.8562C104.997 89.5328 101.464 86.4648 101.464 82.5119L101.464 31.9343Z"
-        fill={getScoreColor(slashing)}
+        fill={getScoreColorInverse(slashing)}
         stroke="#F5F5F5"
         stroke-width="8.58866"
         mask="url(#path-2-inside-1_9_539)"
