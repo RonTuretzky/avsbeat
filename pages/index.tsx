@@ -2,11 +2,10 @@ import { AVSList } from "@/components/avs-list";
 import { AVSTable } from "@/components/avs-table";
 import { Header } from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
-import type { AVSData } from "@/utils/mock-data";
 import { mockData } from "@/utils/mock-data";
+import { AVSApiData, AVSData } from "@/utils/types";
 
 export default function Page({ avsData }: { avsData: AVSData[] }) {
-  // Add a check for undefined avsData
   if (!avsData) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-black p-4 text-white md:p-8">
@@ -62,102 +61,25 @@ export async function getStaticProps() {
     }
 
     const data = await response.json();
+    console.log(JSON.stringify(data.data[0]));
 
-    const updatedData: AVSData[] = data.data
+    const updatedData: AVSData = data.data
+      .filter((avs: AVSApiData) =>
+        mockData.find((entry) => entry.name === avs.metadataName),
+      )
       .map((avs: AVSData) => {
-        // Find matching mock entry
-        const mockEntry = mockData.find((mock) => mock.name === avs.name);
+        const mockEntry = mockData.find(
+          (entry) => entry.name === avs.metadataName,
+        )!;
 
-        if (mockEntry) {
-          // If found, fuse mock data with API data
-          return {
-            ...mockEntry,
-            name: avs.name || mockEntry.name,
-            totalStakers: avs.totalStakers || mockEntry.totalStakers,
-            totalOperators: avs.totalOperators || mockEntry.totalOperators,
-            maxApy: avs.maxApy || mockEntry?.maxApy,
-            cureatedMetadata: {
-              avsAddress:
-                avs.curatedMetadata.avsAddress ??
-                mockEntry.curatedMetadata.avsAddress ??
-                "",
-              metadataDescription:
-                avs.curatedMetadata?.metadataDescription ??
-                mockEntry?.curatedMetadata?.metadataDescription ??
-                "",
-              metadataLogo:
-                avs.curatedMetadata?.metadataLogo ??
-                mockEntry?.curatedMetadata?.metadataLogo ??
-                "",
-              metadataDiscord:
-                avs.curatedMetadata?.metadataDiscord ||
-                mockEntry?.curatedMetadata?.metadataDiscord ||
-                "",
-              metadataTelegram:
-                avs.curatedMetadata?.metadataTelegram ||
-                mockEntry?.curatedMetadata?.metadataTelegram ||
-                "",
-              metadataWebsite:
-                avs.curatedMetadata?.metadataWebsite ||
-                mockEntry?.curatedMetadata?.metadataWebsite ||
-                "",
-              metadataX:
-                avs.curatedMetadata?.metadataX ||
-                mockEntry?.curatedMetadata?.metadataX ||
-                "",
-              metadataGithub:
-                avs.curatedMetadata?.metadataGithub ||
-                mockEntry?.curatedMetadata?.metadataGithub ||
-                "",
-              metadataTokenAddress:
-                avs.curatedMetadata?.metadataTokenAddress ||
-                mockEntry?.curatedMetadata?.metadataTokenAddress ||
-                "",
-            },
-            tvlStrategiesEth:
-              avs.tvlStrategiesEth || mockEntry.tvlStrategiesEth,
-          };
-        }
-
-        // If no match found, create new entry with limited API data and default values
         return {
-          name: avs.name,
-          slashing: "N/A",
-          rewards: "N/A",
-          totalStakers: 77684,
-          totalOperators: 201,
-          maxApy: "0.8322",
-          openSource: false,
-          decentralized: false,
-          protocolInteroperability: [],
-          riskScore: {
-            slashing: 0,
-            rewards: 0,
-            openSource: 20,
-            decentralized: 0,
-            interoperability: 80,
+          ...mockEntry,
+          ...avs,
+          curatedMetadata: {
+            ...avs.curatedMetadata,
           },
-          curatedMetaData: {
-            avsAddress: avs?.curatedMetadata?.avsAddress || "",
-            metadataName: avs.name,
-            metedataLogo: avs.curatedMetadata?.metadataLogo || "",
-            metadataDescription: avs.curatedMetadata.metadataDescription || "",
-            metadataDiscord: avs.curatedMetadata.metadataDiscord || "",
-            metadataTelegram: avs.curatedMetadata.metadataTelegram || "",
-            metadataWebsite: avs.curatedMetadata.metadataWebsite || "",
-            metadataX: avs.curatedMetadata.metadataX || "",
-            metadataGithub: avs.curatedMetadata.metadataGithub || "",
-            metadataTokenAddress:
-              avs.curatedMetadata.metadataTokenAddress || "",
-          },
-          tvlStrategiesEth: { ...avs.tvlStrategiesEth },
         };
-      })
-      // Ensure unique IDs for any new entries
-      .map((item: any, index: number) => ({
-        ...item,
-        id: index + 1,
-      }));
+      });
 
     return {
       props: {

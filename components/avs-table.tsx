@@ -10,10 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { AVSData } from "../utils/mock-data";
 import { AVSSocialIcons } from "./avs-social-icons";
 import { ScoreWheel } from "./score-wheel";
 import { ScoresPopover } from "./scores-popover";
+import { AVSData } from "@/utils/types";
 
 interface AVSTableProps {
   data: AVSData[];
@@ -28,21 +28,22 @@ export function AVSTable({ data }: AVSTableProps) {
           <TableHead className="text-center text-zinc-400">Risks</TableHead>
           <TableHead className="text-zinc-400">Stakers</TableHead>
           <TableHead className="text-zinc-400">Operators</TableHead>
-          <TableHead className="rounded-tr-lg text-zinc-400">
+          <TableHead className="rounded-tr-lg text-center text-zinc-400">
             Category
           </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((avs, index) => (
-          <TableRow key={index} className="max-h-5 bg-white">
-            <TableCell>
-              <div className="flex items-start justify-start gap-4">
+        {data.map((avs) => (
+          <TableRow
+            key={`avs_item_${avs.address}`}
+            className="max-h-5 bg-white"
+          >
+            <TableCell className="flex justify-start">
+              <div className="flex justify-start gap-4">
                 <div className="min-h-8 min-w-8 rounded-full">
                   <Image
-                    src={
-                      avs.curatedMetadata?.metadataLogo || "/placeholder.svg"
-                    }
+                    src={avs.metadataLogo}
                     alt={`${avs.name} logo`}
                     width={40}
                     height={40}
@@ -58,6 +59,7 @@ export function AVSTable({ data }: AVSTableProps) {
                     xLink={avs.curatedMetadata.metadataX}
                     discordLink={avs.curatedMetadata.metadataDiscord}
                     githubLink={avs.curatedMetadata.metadataGithub}
+                    websiteLink={avs.curatedMetadata.metadataWebsite}
                   />
                   <p className="text-foreground">
                     {avs.curatedMetadata.metadataDescription}
@@ -92,7 +94,9 @@ export function AVSTable({ data }: AVSTableProps) {
             <TableCell className="text-black">{avs.totalStakers}</TableCell>
             <TableCell className="text-black">{avs.totalOperators}</TableCell>
             <TableCell className="text-black">
-              {avs.curatedMetadata.tags?.map((tag) => <Badge>{tag}</Badge>)}
+              {avs.curatedMetadata.tags?.map((tag: string) => (
+                <Badge>{tag}</Badge>
+              ))}
             </TableCell>
           </TableRow>
         ))}
