@@ -1,3 +1,4 @@
+import { AVSList } from "@/components/avs-list";
 import { AVSTable } from "@/components/avs-table";
 import { Header } from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,6 +29,9 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
             </CardContent>
           </Card>
         </div>
+        {/* mobile */}
+        <AVSList data={avsData} />
+        {/* desktop */}
         <AVSTable data={avsData} />
       </div>
     </div>
