@@ -14,7 +14,7 @@ export function ScoresPopover({
       <Popover.Trigger asChild>{trigger}</Popover.Trigger>
       <Popover.Portal>
         <Popover.Content sideOffset={5} side="top">
-          <div className="flex items-center gap-20 rounded-lg border border-[#E0E0E0] bg-white p-8">
+          <div className="hidden items-center gap-20 rounded-lg border border-[#E0E0E0] bg-white p-8 md:flex">
             <div className="h-full w-auto">
               <ScoreWheel isLabeled {...scores} />
             </div>
