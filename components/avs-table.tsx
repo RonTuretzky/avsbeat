@@ -76,9 +76,9 @@ export function AVSTable({ data }: AVSTableProps) {
                 />
               </div>
             </TableCell>
-            <TableCell>{avs.totalStakers}</TableCell>
-            <TableCell>{avs.totalOperators}</TableCell>
-            <TableCell>
+            <TableCell className="text-black">{avs.totalStakers}</TableCell>
+            <TableCell className="text-black">{avs.totalOperators}</TableCell>
+            <TableCell className="text-black">
               {avs.curatedMetadata.tags?.map((tag) => <Badge>{tag}</Badge>)}
             </TableCell>
           </TableRow>
