@@ -1,9 +1,12 @@
-type ScoreWheelProps = {
+export type Scores = {
   decent: number;
   slashing: number;
   interop: number;
   os: number;
   rewards: number;
+};
+
+type ScoreWheelProps = Scores & {
   isLabeled?: true;
 };
 

@@ -13,6 +13,7 @@ import {
 import type { AVSData } from "../utils/mock-data";
 import { AVSSocialIcons } from "./avs-social-icons";
 import { ScoreWheel } from "./score-wheel";
+import { ScoresPopover } from "./scores-popover";
 
 interface AVSTableProps {
   data: AVSData[];
@@ -65,14 +66,26 @@ export function AVSTable({ data }: AVSTableProps) {
               </div>
             </TableCell>
             <TableCell className="px-8">
-              {/* <RiskAnalysisChart scores={avs.riskScore} hasLabels={false} /> */}
               <div className="size-20">
-                <ScoreWheel
-                  decent={avs.riskScore.decentralized}
-                  slashing={avs.riskScore.slashing}
-                  interop={avs.riskScore.interoperability}
-                  os={avs.riskScore.openSource}
-                  rewards={avs.riskScore.rewards}
+                <ScoresPopover
+                  trigger={
+                    <button>
+                      <ScoreWheel
+                        decent={avs.riskScore.decentralized}
+                        slashing={avs.riskScore.slashing}
+                        interop={avs.riskScore.interoperability}
+                        os={avs.riskScore.openSource}
+                        rewards={avs.riskScore.rewards}
+                      />
+                    </button>
+                  }
+                  scores={{
+                    decent: avs.riskScore.decentralized,
+                    slashing: avs.riskScore.slashing,
+                    interop: avs.riskScore.interoperability,
+                    os: avs.riskScore.openSource,
+                    rewards: avs.riskScore.rewards,
+                  }}
                 />
               </div>
             </TableCell>
