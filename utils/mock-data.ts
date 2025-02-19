@@ -24,9 +24,9 @@ export const mockData: AVSMockData[] = [
     decentralized: false,
     protocolInteroperability: ["Any EVM"],
     riskScore: {
-      slashing: 80,
+      slashing: 0,
       rewards: 0,
-      openSource: 0,
+      openSource: 30,
       decentralized: 20,
       interoperability: 80,
     },
@@ -41,7 +41,7 @@ export const mockData: AVSMockData[] = [
     riskScore: {
       slashing: 0,
       rewards: 0,
-      openSource: 100,
+      openSource: 20,
       decentralized: 0,
       interoperability: 0,
     },
@@ -56,7 +56,7 @@ export const mockData: AVSMockData[] = [
     riskScore: {
       slashing: 0,
       rewards: 0,
-      openSource: 0,
+      openSource: 20,
       decentralized: 0,
       interoperability: 80,
     },
@@ -73,7 +73,7 @@ export const mockData: AVSMockData[] = [
     riskScore: {
       slashing: 0,
       rewards: 0,
-      openSource: 0,
+      openSource: 20,
       decentralized: 0,
       interoperability: 80,
     },
