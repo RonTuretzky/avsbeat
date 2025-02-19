@@ -6,6 +6,7 @@ import { AVSSocialIcons } from "./avs-social-icons";
 import { ScoreWheel } from "./score-wheel";
 import { ReactNode } from "react";
 import { AVSData } from "@/utils/types";
+import { Badge } from "./ui/badge";
 
 export function AVSList({ data }: { data: AVSData[] }) {
   return (
@@ -44,7 +45,7 @@ export function AVSList({ data }: { data: AVSData[] }) {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-y-3">
+            <div className="grid grid-cols-2 grid-rows-[repeat(7,1fr)] gap-y-3">
               <GridLabel>Rewards</GridLabel>
               <GridValue>{getRiskString(avs.riskScore.rewards)}</GridValue>
 
@@ -64,6 +65,14 @@ export function AVSList({ data }: { data: AVSData[] }) {
 
               <GridLabel>Operators</GridLabel>
               <GridValue>{avs.totalOperators}</GridValue>
+
+              <GridLabel>Category</GridLabel>
+              <GridValue>
+                {" "}
+                {avs.curatedMetadata.tags?.map((tag: string) => (
+                  <Badge>{tag}</Badge>
+                ))}
+              </GridValue>
             </div>
           </article>
         );
@@ -73,7 +82,9 @@ export function AVSList({ data }: { data: AVSData[] }) {
 }
 
 function GridLabel({ children }: { children: ReactNode }) {
-  return <span className="text-sm font-medium">{children}</span>;
+  return (
+    <span className="flex items-center text-sm font-medium">{children}</span>
+  );
 }
 
 function GridValue({ children }: { children: ReactNode }) {
