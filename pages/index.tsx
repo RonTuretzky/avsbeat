@@ -61,7 +61,6 @@ export async function getStaticProps() {
     }
 
     const data = await response.json();
-    console.log(JSON.stringify(data.data[0]));
 
     const updatedData: AVSData = data.data
       .filter((avs: AVSApiData) =>
