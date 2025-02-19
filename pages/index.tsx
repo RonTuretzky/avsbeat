@@ -5,7 +5,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { mockData } from "@/utils/mock-data";
 import { AVSApiData, AVSData } from "@/utils/types";
 
-export default function Page({ avsData }: { avsData: AVSData[] }) {
+export default function Page({
+  avsData,
+  lastUpdated,
+}: {
+  avsData: AVSData[];
+  lastUpdated: number;
+}) {
   if (!avsData) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-black p-4 text-white md:p-8">
@@ -17,7 +23,7 @@ export default function Page({ avsData }: { avsData: AVSData[] }) {
   return (
     <div className="min-h-screen p-4 md:p-8">
       <div className="m-auto max-w-6xl space-y-8">
-        <Header />
+        <Header lastUpdated={lastUpdated} />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="border-2 border-[#f5f5f5] bg-white">
             <CardContent className="p-6">
@@ -83,6 +89,7 @@ export async function getStaticProps() {
     return {
       props: {
         avsData: updatedData,
+        lastUpdated: Date.now(),
       },
       revalidate: 3 * 60 * 60, // Revalidate every 3 hours
     };
