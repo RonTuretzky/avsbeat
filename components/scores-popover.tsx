@@ -51,7 +51,7 @@ export function ScoresPopover({
                       : scores.slashing > 33
                         ? "Medium"
                         : "Low"
-                  } (${scores.decent})`}
+                  } (${scores.slashing})`}
                 </span>
               </ScoreTextPair>
               <ScoreTextPair>
