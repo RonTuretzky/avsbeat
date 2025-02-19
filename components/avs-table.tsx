@@ -81,6 +81,8 @@ export function AVSTable({ data }: AVSTableProps) {
                       />
                     </button>
                   }
+                  isOpenSource={avs.openSource}
+                  isDecentralised={avs.decentralized}
                   scores={{
                     decent: avs.riskScore.decentralized,
                     slashing: avs.riskScore.slashing,
