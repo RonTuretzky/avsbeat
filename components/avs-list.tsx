@@ -7,6 +7,7 @@ import { ScoreWheel } from "./score-wheel";
 import { ReactNode } from "react";
 import { AVSData } from "@/utils/types";
 import { Badge } from "./ui/badge";
+import { formatValue } from "@/lib/utils";
 
 export function AVSList({ data }: { data: AVSData[] }) {
   return (
@@ -47,24 +48,22 @@ export function AVSList({ data }: { data: AVSData[] }) {
             </div>
             <div className="grid grid-cols-2 grid-rows-[repeat(7,1fr)] gap-y-3">
               <GridLabel>Rewards</GridLabel>
-              <GridValue>{getRiskString(avs.riskScore.rewards)}</GridValue>
+              <GridValue>{avs.riskScore.rewards}</GridValue>
 
               <GridLabel>Decentralisation</GridLabel>
-              <GridValue>
-                {getRiskString(avs.riskScore.decentralized)}
-              </GridValue>
+              <GridValue>{avs.riskScore.decentralized}</GridValue>
 
               <GridLabel>Source Code</GridLabel>
-              <GridValue>{avs.openSource ? "Yes" : "No"}</GridValue>
+              <GridValue>{avs.riskScore.openSource}</GridValue>
 
               <GridLabel>Slashing</GridLabel>
-              <GridValue>{getRiskString(avs.riskScore.slashing)}</GridValue>
+              <GridValue>{avs.riskScore.slashing}</GridValue>
 
               <GridLabel>Stakers</GridLabel>
-              <GridValue>{avs.totalStakers}</GridValue>
+              <GridValue>{formatValue(avs.totalStakers)}</GridValue>
 
               <GridLabel>Operators</GridLabel>
-              <GridValue>{avs.totalOperators}</GridValue>
+              <GridValue>{formatValue(avs.totalOperators)}</GridValue>
 
               <GridLabel>Category</GridLabel>
               <GridValue>
