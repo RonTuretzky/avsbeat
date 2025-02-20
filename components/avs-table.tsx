@@ -14,6 +14,7 @@ import { AVSSocialIcons } from "./avs-social-icons";
 import { ScoreWheel } from "./score-wheel";
 import { ScoresPopover } from "./scores-popover";
 import { AVSData } from "@/utils/types";
+import { formatValue } from "@/lib/utils";
 
 interface AVSTableProps {
   data: AVSData[];
@@ -93,8 +94,12 @@ export function AVSTable({ data }: AVSTableProps) {
                 />
               </div>
             </TableCell>
-            <TableCell className="text-black">{avs.totalStakers}</TableCell>
-            <TableCell className="text-black">{avs.totalOperators}</TableCell>
+            <TableCell className="text-black">
+              {formatValue(avs.totalStakers)}
+            </TableCell>
+            <TableCell className="text-black">
+              {formatValue(avs.totalOperators)}
+            </TableCell>
             <TableCell className="text-black">
               {avs.curatedMetadata.tags?.map((tag: string) => (
                 <Badge>{tag}</Badge>
