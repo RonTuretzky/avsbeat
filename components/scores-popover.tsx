@@ -26,83 +26,23 @@ export function ScoresPopover({
             <div className="grid grid-cols-1 gap-3">
               <ScoreTextPair>
                 <ScoreTextLabel>Decentralised</ScoreTextLabel>
-                <span
-                  className={cn(
-                    isDecentralised ? "text-beatgreen-1" : "text-beatred-1",
-                  )}
-                >
-                  {isDecentralised ? "Yes" : "No"}
-                </span>
+                <span>{scores.decent}</span>
               </ScoreTextPair>
               <ScoreTextPair>
                 <ScoreTextLabel>Slashing</ScoreTextLabel>
-                <span
-                  className={cn(
-                    scores.slashing > 66
-                      ? "text-beatred-1"
-                      : scores.slashing > 33
-                        ? "text-beatorange-2"
-                        : "text-beatgreen-1",
-                  )}
-                >
-                  {`${
-                    scores.slashing > 66
-                      ? "High"
-                      : scores.slashing > 33
-                        ? "Medium"
-                        : "Low"
-                  } (${scores.slashing})`}
-                </span>
+                <span>{scores.slashing}</span>
               </ScoreTextPair>
               <ScoreTextPair>
                 <ScoreTextLabel>Interoperability</ScoreTextLabel>
-                <span
-                  className={cn(
-                    scores.interop < 33
-                      ? "text-beatred-1"
-                      : scores.interop < 66
-                        ? "text-beatorange-2"
-                        : "text-beatgreen-1",
-                  )}
-                >
-                  {`${
-                    scores.interop < 33
-                      ? "Low"
-                      : scores.interop < 66
-                        ? "Medium"
-                        : "High"
-                  } (${scores.interop})`}
-                </span>
+                <span>{scores.interop}</span>
               </ScoreTextPair>
               <ScoreTextPair>
                 <ScoreTextLabel>Open Source</ScoreTextLabel>
-                <span
-                  className={cn(
-                    isOpenSource ? "text-beatgreen-1" : "text-beatred-1",
-                  )}
-                >
-                  {isOpenSource ? "Open Source" : "Closed Source"}
-                </span>
+                <span>{scores.os}</span>
               </ScoreTextPair>
               <ScoreTextPair>
                 <ScoreTextLabel>Rewards</ScoreTextLabel>
-                <span
-                  className={cn(
-                    scores.rewards < 33
-                      ? "text-beatred-1"
-                      : scores.rewards < 66
-                        ? "text-beatorange-2"
-                        : "text-beatgreen-1",
-                  )}
-                >
-                  {`${
-                    scores.rewards < 33
-                      ? "Low"
-                      : scores.rewards < 66
-                        ? "Medium"
-                        : "High"
-                  } (${scores.rewards})`}
-                </span>
+                <span>{scores.rewards}</span>
               </ScoreTextPair>
             </div>
           </div>
