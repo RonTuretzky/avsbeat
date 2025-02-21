@@ -21,9 +21,9 @@ export default function Page({
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className="m-auto max-w-6xl space-y-8">
-        <Header lastUpdated={lastUpdated} />
+    <div className="m-auto flex min-h-screen max-w-6xl flex-col space-y-8 p-4 md:p-8">
+      <Header lastUpdated={lastUpdated} />
+      <main className="grow">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="border-2 border-[#f5f5f5] bg-white">
             <CardContent className="p-6">
@@ -38,7 +38,15 @@ export default function Page({
         <AVSList data={avsData} />
         {/* desktop */}
         <AVSTable data={avsData} />
-      </div>
+      </main>
+      <footer className="flex justify-center">
+        <a
+          className="text-center text-xs text-gray-500 underline hover:text-gray-700"
+          href="mailto:avsbeat@gmail.com"
+        >
+          avsbeat@gmail.com
+        </a>
+      </footer>
     </div>
   );
 }
