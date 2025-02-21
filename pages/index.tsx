@@ -21,9 +21,9 @@ export default function Page({
   }
 
   return (
-    <div className="m-auto flex min-h-screen max-w-6xl flex-col space-y-8 p-4 md:p-8">
+    <div className="m-auto flex min-h-screen max-w-6xl flex-col gap-4 p-4 md:p-8">
       <Header lastUpdated={lastUpdated} />
-      <main className="grow">
+      <main className="grid grow grid-cols-1 gap-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="border-2 border-[#f5f5f5] bg-white">
             <CardContent className="p-6">
