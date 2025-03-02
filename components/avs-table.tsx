@@ -102,7 +102,11 @@ export function AVSTable({ data }: AVSTableProps) {
             </TableCell>
             <TableCell className="text-black">
               {avs.curatedMetadata.tags?.map((tag: string) => (
-                <Badge>{tag}</Badge>
+                <Badge
+                  key={`${avs.metadataName.replace(" ", "_")}_table_tag_${tag}`}
+                >
+                  {tag}
+                </Badge>
               ))}
             </TableCell>
           </TableRow>

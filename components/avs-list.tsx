@@ -69,7 +69,11 @@ export function AVSList({ data }: { data: AVSData[] }) {
               <GridValue>
                 {" "}
                 {avs.curatedMetadata.tags?.map((tag: string) => (
-                  <Badge>{tag}</Badge>
+                  <Badge
+                    key={`${avs.metadataName.replace(" ", "_")}_tag_${tag}`}
+                  >
+                    {tag}
+                  </Badge>
                 ))}
               </GridValue>
             </div>
